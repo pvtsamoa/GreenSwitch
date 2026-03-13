@@ -122,6 +122,7 @@ async function search(bot, msg, match) {
     // Send formatted comparison
     const message = messageBuilder.buildComparison(comparison, source);
     bot.sendMessage(chatId, message, {
+      parse_mode: 'HTML',
       reply_markup: keyboards.comparisonActions(term),
       disable_web_page_preview: true
     });
