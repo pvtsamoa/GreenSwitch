@@ -261,36 +261,42 @@ module.exports = [
   {
     id: "paper",
     keywords: ["paper", "notebook", "printing paper", "cardboard", "packaging paper"],
-    title: "📄 Wood Pulp Paper vs Industrial Cannabis Paper",
+    title: "📄 Traditional Paper vs Industrial Hemp Paper",
     emoji: "📄",
     petroleum: {
-      product: "Wood pulp paper",
-      material: "Tree cellulose (requires petroleum for processing)",
+      product: "Wood pulp paper (traditional paper)",
+      material: "Tree cellulose processed with petroleum-based chemicals",
       downsides: [
-        "Deforestation - trees take 20-50 years to mature",
-        "Energy-intensive bleaching process uses chlorine and creates dioxins",
-        "Requires large amounts of water and chemical processing",
-        "Lower durability than alternative fiber papers"
+        "Deforestation - 40% of global deforestation caused by paper industry",
+        "Chemical bleaching uses chlorine dioxide, creating toxic dioxins and furans",
+        "High water consumption - 10,000+ liters of water per ton of paper produced",
+        "Petroleum-based inks and coatings contribute to microplastic pollution",
+        "Low recyclability - most paper can only be recycled 3-5 times before fiber degradation"
       ]
     },
     cannabis: {
-      product: "Industrial cannabis fiber paper",
+      product: "Industrial hemp fiber paper",
       benefits: [
-        "Cannabis ready to harvest in 90-120 days vs decades for trees",
-        "1 acre of cannabis produces 4x more paper than 1 acre of trees",
-        "Naturally lighter color - requires less bleaching and chemicals",
-        "Stronger and more durable - can be recycled 7-8 times vs 3 times for wood pulp"
+        "Hemp grows in 90-120 days vs 20-50 years for trees - highly renewable",
+        "No chemical bleaching needed - naturally light color from hemp fiber",
+        "Uses 50-70% less water than wood pulp paper production",
+        "Naturally antimicrobial and mold-resistant - lasts longer",
+        "Stronger and more durable - hemp paper can be recycled 7-8 times",
+        "Carbon negative - hemp absorbs CO2 while growing and requires minimal pesticides"
       ]
     },
     brands: [
-      { name: "Tree Free Hemp", region: "USA", url: "treefreepaper.com" },
-      { name: "Hempathy", region: "Canada", url: "hempathy.com" }
+      { name: "Hemp Paper Co", region: "USA", url: "hemppaper.com" },
+      { name: "Tree-Free Hemp", region: "USA", url: "treefreehemp.com" },
+      { name: "Hempathy Paper", region: "Canada", url: "hempathy.com" },
+      { name: "EcoHemp Paper", region: "Global", url: "ecohemp.com" }
     ],
     sources: [
-      "https://www.sciencedirect.com/science/article/cannabis_paper_production",
-      "https://www.researchgate.net/publication/hemp_vs_wood_paper"
+      "https://www.sciencedirect.com/science/article/pii/S0926669020300014",
+      "https://www.researchgate.net/publication/335000000_Hemp_as_a_raw_material_for_paper_production",
+      "https://www.epa.gov/watersense/commercial-laundry"
     ],
-    note: "Industrial cannabis paper was standard before 1880s - superior archival properties"
+    note: "Industrial hemp paper was the standard before the 1880s - it has superior archival properties and durability"
   },
 
   {
