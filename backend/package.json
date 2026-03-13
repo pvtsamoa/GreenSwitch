@@ -1,0 +1,29 @@
+{
+  "name": "greenswitch-backend",
+  "version": "1.0.0",
+  "description": "GreenSwitch API Backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [
+    "api",
+    "greenswitch",
+    "cannabis"
+  ],
+  "author": "pvtsamoa",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "@supabase/supabase-js": "^2.99.1",
+    "@upstash/redis": "^1.37.0",
+    "next": "^16.1.6",
+    "node-cache": "^5.1.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}
