@@ -13,14 +13,15 @@ if (!process.env.ANTHROPIC_API_KEY) {
   console.warn('⚠️  ANTHROPIC_API_KEY missing - AI fallback disabled')
 }
 
-// Initialize database
-database.init()
+// Initialize database and start bot
+async function startApp() {
+  await database.init()
 
-// Start the bot
-bot.start()
+  // Start the bot
+  bot.start()
 
-// Startup banner
-console.log(`
+  // Startup banner
+  console.log(`
 ╔═══════════════════════════════════╗
 ║   🌿 GreenSwitch Bot Running 🌿   ║
 ║                                   ║
@@ -29,13 +30,18 @@ console.log(`
 ║  Database: SQLite Active          ║
 ║  Cache: 7-day TTL                 ║
 ╚═══════════════════════════════════╝
-`)
+  `)
 
-logger.success(`Started at: ${new Date().toISOString()}`)
+  logger.success(`Started at: ${new Date().toISOString()}`)
+}
 
-// Graceful shutdown
+startApp().catch(error => {
+  console.error('Failed to start application:', error)
+  process.exit(1)
+})
+
 process.on('SIGINT', () => {
-  logger.info('\n🛑 Shutting down GreenSwitch...')
+  logger.info('\n🛑 Received SIGINT, shutting down...')
   bot.stop()
   process.exit(0)
 })

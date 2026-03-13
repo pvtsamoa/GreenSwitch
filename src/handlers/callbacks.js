@@ -12,6 +12,13 @@ async function handle(bot, query) {
   const data = query.data
   const userId = query.from.id
 
+  // Validate callback data
+  if (!data || typeof data !== 'string' || data.length > 100) {
+    logger.warn(`Invalid callback data: ${data}`)
+    await bot.answerCallbackQuery(query.id, { text: 'Invalid request' })
+    return
+  }
+
   logger.info(`🔘 Button clicked: ${data} by user ${userId}`)
 
   try {
