@@ -65,7 +65,7 @@ async function search(bot, msg, match) {
     let cost = 0;
 
     // STEP 1: Cache (fastest, free)
-    comparison = cache.get(term);
+    comparison = cache.get(term + '_v2');
 
     if (!comparison) {
       // STEP 2: Hardcoded list (instant, free)
@@ -78,7 +78,7 @@ async function search(bot, msg, match) {
         comparison = hardcoded;
         source = 'hardcoded';
         logger.success(`💚 HARDCODED HIT: "${term}" - $0 cost!`);
-        cache.set(term, comparison);
+        cache.set(term + '_v2', comparison);
       }
     }
 
@@ -87,7 +87,7 @@ async function search(bot, msg, match) {
       comparison = database.getComparison(term);
       if (comparison) {
         source = 'database';
-        cache.set(term, comparison);
+        cache.set(term + '_v2', comparison);
       }
     }
 
@@ -106,7 +106,7 @@ async function search(bot, msg, match) {
       cost = aiResult.cost;
 
       database.saveComparison(term, null, comparison, comparison.sources || []);
-      cache.set(term, comparison);
+      cache.set(term + '_v2', comparison);
 
       logger.warn(`💰 AI used: $${cost.toFixed(4)} - saved for future users!`);
     }
