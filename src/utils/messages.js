@@ -1,6 +1,14 @@
 const config = require('../config/config')
 
 /**
+ * Escape Markdown special characters
+ */
+function escapeMarkdown(text) {
+  if (typeof text !== 'string') return text
+  return text.replace(/([*_`\[\]()~>#+\-=|{}.!])/g, '\\$1')
+}
+
+/**
  * Welcome message - CANNABIS POWER MODE
  */
 function welcome() {
@@ -39,37 +47,38 @@ Industrial cannabis offers biodegradable, renewable alternatives without the pol
  * this message. Just remove the parse_mode line entirely.
  */
 function buildComparison(data, source = 'ai') {
-  let msg = `${data.emoji || '🌿'} ${data.title}\n\n`
+  let msg = `${data.emoji || '🌿'} ${escapeMarkdown(data.title)}\n\n`
 
   // Petroleum side
-  msg += `⛽ PETROLEUM SIDE: ${data.petroleum.product}\n`
+  msg += `⛽ PETROLEUM SIDE: ${escapeMarkdown(data.petroleum.product)}\n`
   if (data.petroleum.material) {
-    msg += `Material: ${data.petroleum.material}\n\n`
+    msg += `Material: ${escapeMarkdown(data.petroleum.material)}\n\n`
   }
   data.petroleum.downsides.forEach(d => {
-    msg += `  • ${d}\n`
+    msg += `  • ${escapeMarkdown(d)}\n`
   })
 
   // Cannabis side
   const cannabisProduct = data.cannabis?.product || data.hemp?.product || 'Unknown'
-  msg += `\n🌿 INDUSTRIAL CANNABIS SIDE: ${cannabisProduct}\n`
+  msg += `\n🌿 INDUSTRIAL CANNABIS SIDE: ${escapeMarkdown(cannabisProduct)}\n`
   msg += `Cannabis sativa L. (THC <0.3%) - Non-psychoactive\n\n`
   
   const benefits = data.cannabis?.benefits || data.hemp?.benefits || []
   benefits.forEach(b => {
-    msg += `  • ${b}\n`
+    msg += `  • ${escapeMarkdown(b)}\n`
   })
 
   // Where to buy
   if (data.brands && data.brands.length > 0) {
     msg += `\n🛒 WHERE TO BUY:\n`
     data.brands.forEach(brand => {
-      msg += `  • ${brand.name}`
+      const brandName = typeof brand === 'string' ? brand : brand.name
+      msg += `  • ${escapeMarkdown(brandName)}`
       if (brand.region) {
-        msg += ` (${brand.region})`
+        msg += ` (${escapeMarkdown(brand.region)})`
       }
       if (brand.url) {
-        msg += `\n    ${brand.url}`
+        msg += `\n    ${escapeMarkdown(brand.url)}`
       }
       msg += `\n`
     })
@@ -77,14 +86,14 @@ function buildComparison(data, source = 'ai') {
 
   // Note
   if (data.note) {
-    msg += `\n📝 ${data.note}\n`
+    msg += `\n📝 ${escapeMarkdown(data.note)}\n`
   }
 
   // Sources
   if (data.sources && data.sources.length > 0) {
     msg += `\n📚 Sources:\n`
     data.sources.slice(0, 3).forEach((src, i) => {
-      msg += `  ${i + 1}. ${src}\n`
+      msg += `  ${i + 1}. ${escapeMarkdown(src)}\n`
     })
   }
 
